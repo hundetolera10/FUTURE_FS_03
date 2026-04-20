@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0B0B0B;
+  color: white;
+}
+
+.section {
+  padding: 80px 10%;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: #FFD700;
+  color: black;
+}
+
+.btn-outline {
+  border: 1px solid white;
+  color: white;
+}
+
+.card {
+  background: #1A1A1A;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
