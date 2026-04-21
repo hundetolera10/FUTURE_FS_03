@@ -23,34 +23,52 @@ db.connect((err) => {
   }
 });
 
+/* JOIN FORM */
 app.post("/join", (req, res) => {
   const { name, phone, plan } = req.body;
 
-  const sql = "INSERT INTO members (name, phone, plan) VALUES (?, ?, ?)";
+  const sql =
+    "INSERT INTO members (name, phone, plan) VALUES (?, ?, ?)";
 
-  db.query(sql, [name, phone, plan], (err, result) => {
+  db.query(sql, [name, phone, plan], (err) => {
     if (err) {
-      return res.status(500).json({ message: "Database error" });
+      console.log(err);
+      return res.status(500).json({
+        message: "Database error"
+      });
     }
 
-    res.json({ message: "Successfully joined Bright Gym 💪" });
+    res.json({
+      message: "Successfully joined Bright Gym 💪"
+    });
   });
 });
+
+/* CONTACT FORM */
 app.post("/contact", (req, res) => {
   const { name, email, phone, message } = req.body;
 
   const sql =
     "INSERT INTO messages (name, email, phone, message) VALUES (?, ?, ?, ?)";
 
-  db.query(sql, [name, email, phone, message], (err, result) => {
+  db.query(sql, [name, email, phone, message], (err) => {
     if (err) {
-      console.log("DB Insert Error:", err);
+      console.log(err);
       return res.status(500).send("Error saving message");
     }
 
     res.send("Message sent successfully");
   });
 });
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+
+/* HEALTH CHECK */
+app.get("/", (req, res) => {
+  res.send("Bright Gym API Running 🚀");
+});
+
+/* DEPLOY PORT */
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
